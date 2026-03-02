@@ -29,7 +29,7 @@ class HistoryScreen extends ConsumerWidget {
               ),
               title: Text(item.riskLevel),
               subtitle: Text(
-                '${item.toxicityScore.toStringAsFixed(1)} • ${item.createdAt != null ? DateFormat.yMMMd().add_jm().format(item.createdAt!) : 'now'}',
+                '${item.toxicityScore.round()} • ${item.createdAt != null ? DateFormat.yMMMd().add_jm().format(item.createdAt!) : 'now'}',
               ),
               onTap: () => context.push(
                 '/analysis',

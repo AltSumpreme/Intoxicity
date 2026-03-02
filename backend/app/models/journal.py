@@ -15,6 +15,7 @@ class JournalEntry(Base):
     risk_level: Mapped[str] = mapped_column(String(32), nullable=False)
     sentiment_label: Mapped[str] = mapped_column(String(64), nullable=False)
     emotional_profile: Mapped[dict] = mapped_column(JSON, nullable=False)
+    emotional_shift_summary: Mapped[str] = mapped_column(Text, nullable=False)
     top_behaviors: Mapped[list] = mapped_column(JSON, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/theme/app_theme.dart';
+import 'core/theme/theme.dart';
 import 'router.dart';
 
 class IntoxicityApp extends StatelessWidget {

@@ -21,7 +21,7 @@ async def analyze_journal(payload: AnalyzeRequest, db: AsyncSession = Depends(ge
         toxicity_score=journal.toxicity_score,
         risk_level=journal.risk_level,
         sentiment=SentimentOutput(label=journal.sentiment_label),
-        emotional_profile=journal.emotional_profile,
+        emotional_shift_summary=journal.emotional_shift_summary,
         top_behaviors=journal.top_behaviors,
     )
 
@@ -38,7 +38,7 @@ async def get_history(db: AsyncSession = Depends(get_db)) -> list[HistoryItem]:
             toxicity_score=entry.toxicity_score,
             risk_level=entry.risk_level,
             sentiment=SentimentOutput(label=entry.sentiment_label),
-            emotional_profile=entry.emotional_profile,
+            emotional_shift_summary=entry.emotional_shift_summary,
             top_behaviors=entry.top_behaviors,
             created_at=entry.created_at,
         )
