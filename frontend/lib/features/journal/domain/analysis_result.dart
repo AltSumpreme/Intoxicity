@@ -3,7 +3,7 @@ class AnalysisResult {
     required this.toxicityScore,
     required this.riskLevel,
     required this.sentiment,
-    required this.emotionalProfile,
+    required this.emotionalShiftSummary,
     required this.topBehaviors,
     this.content,
     this.createdAt,
@@ -16,7 +16,7 @@ class AnalysisResult {
   final double toxicityScore;
   final String riskLevel;
   final String sentiment;
-  final Map<String, double> emotionalProfile;
+  final String emotionalShiftSummary;
   final List<BehaviorEvidence> topBehaviors;
 
   factory AnalysisResult.fromJson(Map<String, dynamic> json) {
@@ -28,8 +28,7 @@ class AnalysisResult {
       toxicityScore: (json['toxicity_score'] as num).toDouble(),
       riskLevel: json['risk_level'] as String,
       sentiment: sentimentData['label'] as String,
-      emotionalProfile: (json['emotional_profile'] as Map<String, dynamic>)
-          .map((key, value) => MapEntry(key, (value as num).toDouble())),
+      emotionalShiftSummary: json['emotional_shift_summary'] as String,
       topBehaviors: (json['top_behaviors'] as List)
           .map((item) => BehaviorEvidence.fromJson(Map<String, dynamic>.from(item as Map)))
           .toList(),
@@ -39,23 +38,26 @@ class AnalysisResult {
 
 class BehaviorEvidence {
   BehaviorEvidence({
-    required this.behavior,
+    required this.category,
     required this.severity,
-    required this.sentence,
-    required this.sentimentLabel,
+    required this.evidence,
+    required this.sentiment,
+    required this.impactSummary,
   });
 
-  final String behavior;
+  final String category;
   final double severity;
-  final String sentence;
-  final String sentimentLabel;
+  final String evidence;
+  final String sentiment;
+  final String impactSummary;
 
   factory BehaviorEvidence.fromJson(Map<String, dynamic> json) {
     return BehaviorEvidence(
-      behavior: json['behavior'] as String,
+      category: json['category'] as String,
       severity: (json['severity'] as num).toDouble(),
-      sentence: json['sentence'] as String,
-      sentimentLabel: json['sentiment_label'] as String,
+      evidence: json['evidence'] as String,
+      sentiment: json['sentiment'] as String,
+      impactSummary: json['impact_summary'] as String,
     );
   }
 }

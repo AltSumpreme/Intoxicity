@@ -8,11 +8,11 @@ class AnalyzeRequest(BaseModel):
 
 
 class SentenceEvidence(BaseModel):
-    behavior: str
+    category: str
     severity: float
-    sentence: str
-    emotion_scores: dict[str, float]
-    sentiment_label: str
+    evidence: str
+    sentiment: str
+    impact_summary: str
 
 
 class SentimentOutput(BaseModel):
@@ -23,7 +23,7 @@ class AnalyzeResponse(BaseModel):
     toxicity_score: float
     risk_level: str
     sentiment: SentimentOutput
-    emotional_profile: dict[str, float]
+    emotional_shift_summary: str
     top_behaviors: list[SentenceEvidence]
 
 
